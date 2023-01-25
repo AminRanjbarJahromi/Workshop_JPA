@@ -10,6 +10,8 @@ public class Details {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(updatable = false)
     private int detailsId;
+
+    @Column(nullable = false, length = 150, unique = true)
     private String email;
     private String name;
     private LocalDate birthDate;

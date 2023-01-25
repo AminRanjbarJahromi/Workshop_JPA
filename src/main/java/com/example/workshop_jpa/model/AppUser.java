@@ -1,9 +1,6 @@
 package com.example.workshop_jpa.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -11,11 +8,20 @@ import java.time.LocalDate;
 public class AppUser {
 
     @Id
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(updatable = false)
     private int appUserId;
+
+    @Column(nullable = false , unique = true)
     private String userName;
+    @Column(nullable = false)
     private String passWord;
     private LocalDate regDate;
+
+    public AppUser() {
+
+        this.regDate = LocalDate.now();
+    }
 
     @OneToOne
     @JoinColumn(name = "details_details_id")
